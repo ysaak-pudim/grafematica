@@ -33,33 +33,36 @@ class GrafematicaApp extends SignalWidget {
       darkTheme: FluentThemeData(brightness: .dark),
 
       // App home
-      home: SafeArea(
-        child: Container(
-          width: .maxFinite,
-          height: .maxFinite,
-          padding: .all(5),
-          child: Stack(
-            children: [
-              Positioned(top: 50, child: Container()),
-              Center(
-                child: FlexBox(
-                  style: FlexBoxStyler()
-                      .mainAxisSize(.min)
-                      .direction(.vertical)
-                      .padding(.all(20))
-                      .color(Colors.black)
-                      .shadow(.color(primaryColor).blurRadius(3))
-                      .border(.color(primaryColor))
-                      .borderRadius(.all(.circular(20))),
-                  children: [
-                    Text("This is a container."),
-                    Text("You selected: ${selectedNavigation.value}"),
-                  ],
-                ),
+      home: Container(
+        width: .maxFinite,
+        height: .maxFinite,
+        padding: .all(5),
+        child: Stack(
+          children: [
+            //SafeArea(child: Row(children: [])),
+
+            Positioned(
+              bottom: 200,
+              right: 20,
+              child: FlexBox(
+                style: FlexBoxStyler()
+                    .mainAxisSize(.min)
+                    .direction(.vertical)
+                    .padding(.all(20))
+                    .color(Colors.black)
+                    .shadow(.color(primaryColor).blurRadius(4))
+                    .border(.color(primaryColor))
+                    .borderRadius(.all(.circular(20))),
+                children: [
+                  Text("This is a container."),
+                  Text("You selected: ${selectedNavigation.value}"),
+                ],
               ),
-              LayoutBuilder(
-                builder: (_, constraints) {
-                  return Align(
+            ),
+            LayoutBuilder(
+              builder: (_, constraints) {
+                return SafeArea(
+                  child: Align(
                     alignment: .bottomCenter,
                     child: Box(
                       style: BoxStyler()
@@ -68,7 +71,7 @@ class GrafematicaApp extends SignalWidget {
                           .color(Colors.black)
                           .borderRadius(.all(.circular(15)))
                           .border(.color(primaryColor).width(1))
-                          .shadow(.color(primaryColor).blurRadius(3)),
+                          .shadow(.color(primaryColor).blurRadius(4)),
                       child: CommandBar(
                         mainAxisAlignment: .spaceEvenly,
                         primaryItems: [
@@ -131,11 +134,11 @@ class GrafematicaApp extends SignalWidget {
                         ],
                       ),
                     ),
-                  );
-                },
-              ),
-            ],
-          ),
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
