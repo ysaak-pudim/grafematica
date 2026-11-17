@@ -1,16 +1,11 @@
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:mix/mix.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:typst_flutter/typst_flutter.dart';
 
-import 'dart:math';
-
 /// Active compiler for the whole app
 late TypstCompiler typstCompiler;
 final compilerIsReady = signal(false);
-
-final commandBarKey = GlobalKey<CommandBarState>();
 
 class GrafematicaApp extends SignalWidget {
   GrafematicaApp({super.key}) {
@@ -36,13 +31,15 @@ class GrafematicaApp extends SignalWidget {
             Center(
               child: FlexBox(
                 style: FlexBoxStyler()
-                    .color(Colors.purple)
                     .mainAxisSize(.min)
                     .direction(.vertical)
                     .padding(.all(20))
+                    .color(Colors.black)
+                    .shadow(.color(Colors.purple).blurRadius(3))
+                    .border(.color(Colors.purple))
                     .borderRadius(.all(.circular(20))),
                 children: [
-                  Text("This is a container"),
+                  Text("This is a container."),
                   Text("You selected: ${selectedNavigation.value}"),
                 ],
               ),
@@ -70,6 +67,12 @@ class GrafematicaApp extends SignalWidget {
                           },
                         ),
                         CommandBarSeparator(),
+                        CommandBarButton(
+                          icon: WindowsIcon(FluentIcons.insights),
+                          onPressed: () {
+                            selectedNavigation.value = "Learn";
+                          },
+                        ),
                         CommandBarButton(
                           //label: Text("Graph View"),
                           icon: WindowsIcon(
