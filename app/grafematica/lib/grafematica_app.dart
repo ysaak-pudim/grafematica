@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:grafematica/features/homepage/homepage.dart';
 import 'package:mix/mix.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:typst_flutter/typst_flutter.dart';
@@ -17,9 +18,9 @@ class GrafematicaApp extends SignalWidget {
   final selectedNavigation = signal("");
   final selectedIndex = signal(0);
 
-  Color whiteOrMaybeOther(int index) {
+  Color whiteOrMaybeOther(BuildContext context, int index) {
     if (index == selectedIndex.value) {
-      return primaryColor;
+      return FluentTheme.of(context).activeColor;
     } else {
       return Colors.white;
     }
@@ -29,8 +30,14 @@ class GrafematicaApp extends SignalWidget {
   Widget build(BuildContext context) {
     return FluentApp(
       // Theme part
-      theme: FluentThemeData(brightness: .light),
-      darkTheme: FluentThemeData(brightness: .dark),
+      theme: FluentThemeData(
+        brightness: .light,
+        activeColor: Color.fromARGB(255, 160, 0, 255),
+      ),
+      darkTheme: FluentThemeData(
+        brightness: .dark,
+        activeColor: Color.fromARGB(255, 160, 0, 255),
+      ),
 
       // App home
       home: Container(
@@ -39,7 +46,15 @@ class GrafematicaApp extends SignalWidget {
         padding: .all(5),
         child: Stack(
           children: [
-            //SafeArea(child: Row(children: [])),
+            SafeArea(
+              child: <Widget>[
+                Homepage(),
+                Container(),
+                Container(),
+                Container(),
+                Container(),
+              ][selectedIndex.value],
+            ),
 
             Positioned(
               bottom: 200,
@@ -60,7 +75,7 @@ class GrafematicaApp extends SignalWidget {
               ),
             ),
             LayoutBuilder(
-              builder: (_, constraints) {
+              builder: (ctx, constraints) {
                 return SafeArea(
                   child: Align(
                     alignment: .bottomCenter,
@@ -79,7 +94,7 @@ class GrafematicaApp extends SignalWidget {
                             //label: Text("Home"),
                             icon: WindowsIcon(
                               WindowsIcons.home,
-                              color: whiteOrMaybeOther(0),
+                              color: whiteOrMaybeOther(ctx, 0),
                             ),
                             onPressed: () {
                               selectedNavigation.value = "Home";
@@ -90,7 +105,7 @@ class GrafematicaApp extends SignalWidget {
                           CommandBarButton(
                             icon: WindowsIcon(
                               FluentIcons.insights,
-                              color: whiteOrMaybeOther(1),
+                              color: whiteOrMaybeOther(ctx, 1),
                             ),
                             onPressed: () {
                               selectedNavigation.value = "Learn";
@@ -101,7 +116,7 @@ class GrafematicaApp extends SignalWidget {
                             //label: Text("Graph View"),
                             icon: WindowsIcon(
                               FluentIcons.charticulator_linking_data,
-                              color: whiteOrMaybeOther(2),
+                              color: whiteOrMaybeOther(ctx, 2),
                             ),
                             onPressed: () {
                               selectedNavigation.value = "Graph View";
@@ -112,7 +127,7 @@ class GrafematicaApp extends SignalWidget {
                             //label: Text("Stats"),
                             icon: WindowsIcon(
                               FluentIcons.charticulator_linking_sequence,
-                              color: whiteOrMaybeOther(3),
+                              color: whiteOrMaybeOther(ctx, 3),
                             ),
                             onPressed: () {
                               selectedNavigation.value = "Stats";
@@ -124,7 +139,7 @@ class GrafematicaApp extends SignalWidget {
                             //label: Text("Settings"),
                             icon: WindowsIcon(
                               WindowsIcons.settings,
-                              color: whiteOrMaybeOther(4),
+                              color: whiteOrMaybeOther(ctx, 4),
                             ),
                             onPressed: () {
                               selectedNavigation.value = "Settings";
