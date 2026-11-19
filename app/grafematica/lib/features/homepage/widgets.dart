@@ -1,6 +1,7 @@
 part of 'homepage.dart';
 
-final _textBaseStyle = TextStyler().color(MixColors.grey);
+const loremIpsum =
+    """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.""";
 
 class NavigationOptionWidget extends SignalWidget {
   NavigationOptionWidget({
@@ -21,11 +22,7 @@ class NavigationOptionWidget extends SignalWidget {
       .borderRadius(.all(.circular(10)))
       .minHeight(100)
       .animate(.easeInOut(Duration(milliseconds: 50)))
-      .onPressed(.scale(1.05));
-
-  final _titleStyle = _textBaseStyle.color(MixColors.grey).fontWeight(.bold).textScaler(.linear(1.25));
-
-  final _descriptionStyle = _textBaseStyle.color(MixColors.greySwatch);
+      .onPressed(.scale(1.02));
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +30,13 @@ class NavigationOptionWidget extends SignalWidget {
     return Box(
       style: _style,
       child: Column(
+        spacing: 20,
         crossAxisAlignment: .start,
         children: [
           Row(
             mainAxisAlignment: .spaceBetween,
             children: [
-              StyledText(
-                title,
-                style: _titleStyle,
-              ),
+              Text(title, textScaler: .linear(1.4)),
               WindowsIcon(
                 icon ?? FluentIcons.fluid_logo,
                 color: activeColor,
@@ -49,10 +44,7 @@ class NavigationOptionWidget extends SignalWidget {
               ),
             ],
           ),
-          StyledText(
-            description ?? "Lorem ipsum ... ... .. ..",
-            style: _descriptionStyle,
-          ),
+          Text(description ?? loremIpsum),
         ],
       ),
     );

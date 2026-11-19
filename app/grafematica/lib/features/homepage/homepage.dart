@@ -6,6 +6,8 @@ import 'package:signals_flutter/signals_flutter.dart';
 part 'widgets.dart';
 
 class Homepage extends SignalWidget {
+  const Homepage({super.key});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

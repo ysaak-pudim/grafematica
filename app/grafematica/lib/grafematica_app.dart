@@ -8,6 +8,8 @@ import 'package:typst_flutter/typst_flutter.dart';
 late TypstCompiler typstCompiler;
 final compilerIsReady = signal(false);
 
+Color whiteColor = Color.fromARGB(255, 214, 214, 214);
+Color blackColor = const Color.fromARGB(255, 24, 24, 24);
 Color primaryColor = Color.fromARGB(255, 160, 0, 255);
 
 class GrafematicaApp extends SignalWidget {
@@ -18,12 +20,11 @@ class GrafematicaApp extends SignalWidget {
   final selectedNavigation = signal("");
   final selectedIndex = signal(0);
 
-  Color whiteOrMaybeOther(BuildContext context, int index) {
+  Color? whiteOrMaybeOther(BuildContext context, int index) {
     if (index == selectedIndex.value) {
       return FluentTheme.of(context).activeColor;
-    } else {
-      return Colors.white;
     }
+    return FluentTheme.of(context).typography.body?.color;
   }
 
   @override
@@ -32,11 +33,13 @@ class GrafematicaApp extends SignalWidget {
       // Theme part
       theme: FluentThemeData(
         brightness: .light,
-        activeColor: Color.fromARGB(255, 160, 0, 255),
+        activeColor: primaryColor,
+        typography: Typography.fromBrightness(color: blackColor),
       ),
       darkTheme: FluentThemeData(
         brightness: .dark,
-        activeColor: Color.fromARGB(255, 160, 0, 255),
+        activeColor: primaryColor,
+        typography: Typography.fromBrightness(color: whiteColor),
       ),
 
       // App home
