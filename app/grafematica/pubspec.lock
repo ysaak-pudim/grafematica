@@ -397,6 +397,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  mix_winds:
+    dependency: "direct main"
+    description:
+      path: "packages/mix_winds"
+      ref: HEAD
+      resolved-ref: e5259d8e65a32f7b7f11d14e6d734fe76226f8e6
+      url: "https://github.com/btwld/mix.git"
+    source: git
+    version: "0.1.0-alpha.1"
   objective_c:
     dependency: transitive
     description:
