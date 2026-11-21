@@ -61,7 +61,6 @@ class Subject {
   }
 
   void addDependents(List<Subject> dependents) {
-    if (dependents.contains(this)) return;
     _dependents.addAll(dependents.where((d) => d != this));
   }
 }
