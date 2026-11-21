@@ -46,39 +46,24 @@ class HomeNavigationOptionWidget extends SignalWidget {
 
   /// DIRTY PART!!
   /// TODO: reference the style by a file
-  final _style = BoxStyler()
-      //.color(Colors.black)
-      .padding(.all(18))
-      .border(.color(Colors.grey).width(2))
-      .borderRadius(.all(.circular(10)))
-      .minHeight(100)
-      .animate(.easeInOut(Duration(milliseconds: 50)))
-      .onPressed(.scale(1.02));
 
   @override
   Widget build(BuildContext context) {
     final iconColor = Theme.of(context).iconTheme.color;
-    return PressableBox(
-      style: _style,
-      onPress: onPress,
-      child: Column(
-        spacing: 20,
-        crossAxisAlignment: .start,
-        children: [
-          Row(
-            mainAxisAlignment: .spaceBetween,
-            children: [
-              Text(title, textScaler: .linear(1.4)),
-              fluent_ui.WindowsIcon(
-                icon ?? fluent_ui.FluentIcons.app_icon_default,
-                color: iconColor,
-                size: 30,
-              ),
-            ],
+    return button(
+      'flex-col border-2 border-gray-600 rounded-xl p-5 gap-5 dark:hover:border-white',
+      [
+        div('flex-row justify-between', [
+          Text(title, textScaler: .linear(1.4)),
+          Icon(
+            icon ?? fluent_ui.FluentIcons.app_icon_default,
+            color: iconColor,
+            size: 30,
           ),
-          Text(description ?? loremIpsum),
-        ],
-      ),
+        ]),
+        Text(description ?? loremIpsum),
+      ],
+      onPressed: onPress,
     );
   }
 }
