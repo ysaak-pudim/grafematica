@@ -24,21 +24,18 @@ class GrafematicaApp extends SignalWidget {
       theme: AppThemes.defaultLight, // TODO: theme management
       darkTheme: AppThemes.defaultDark, // TODO: theme management
       home: Scaffold(
-        body: SizedBox(
-          width: .maxFinite,
-          height: .maxFinite,
-          child: Stack(
-            children: [
-              // TODO: implement navigator and container
-              [Homepage()][0],
-              SafeArea(
-                child: Align(
-                  alignment: .bottomCenter,
-                  child: AppNavigationBarWidget(),
-                ),
+        body: Stack(
+          children: [
+            // TODO: implement navigator and navigation box
+            [
+              Homepage(),
+              ...List.generate(
+                4,
+                (i) => Center(child: Text('destination ${i + 1}')),
               ),
-            ],
-          ),
+            ][navigationDestinationIndex.value],
+            AppNavigationBarWidget(),
+          ],
         ),
       ),
     );

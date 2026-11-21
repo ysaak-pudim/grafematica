@@ -6,29 +6,24 @@ class Homepage extends SignalWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      margin: .symmetric(vertical: 30, horizontal: 30),
-      child: Column(
-        spacing: 25,
-        mainAxisAlignment: .spaceEvenly,
-        mainAxisSize: .min,
-        children: [
-          HomeNavigationOptionWidget(
-            title: "Learn",
-            icon: fluent_ui.FluentIcons.insights,
-            description: "Learn all you want step by step.",
-          ),
-          HomeNavigationOptionWidget(
-            title: "Graph View",
-            icon: fluent_ui.FluentIcons.charticulator_linking_data,
-          ),
-          HomeNavigationOptionWidget(
-            title: "Stats",
-            icon: fluent_ui.FluentIcons.charticulator_linking_sequence,
-          ),
-        ],
+    return div('flex-col w-screen h-screen p-5 gap-5', [
+      HomeNavigationOptionWidget(
+        title: "Learn",
+        icon: fluent_ui.FluentIcons.insights,
+        description: "Learn all you want step by step.",
+        onPress: () => changeNavigationIndexTo(1),
       ),
-    );
+      HomeNavigationOptionWidget(
+        title: "Graph View",
+        icon: fluent_ui.FluentIcons.charticulator_linking_data,
+        onPress: () => changeNavigationIndexTo(2),
+      ),
+      HomeNavigationOptionWidget(
+        title: "Stats",
+        icon: fluent_ui.FluentIcons.charticulator_linking_sequence,
+        onPress: () => changeNavigationIndexTo(3),
+      ),
+    ]);
   }
 }
 
@@ -41,11 +36,13 @@ class HomeNavigationOptionWidget extends SignalWidget {
     this.title = "Title",
     this.icon,
     this.description,
+    this.onPress,
   });
 
   final String title;
   final IconData? icon;
   final String? description;
+  final VoidCallback? onPress;
 
   /// DIRTY PART!!
   /// TODO: reference the style by a file
@@ -61,8 +58,9 @@ class HomeNavigationOptionWidget extends SignalWidget {
   @override
   Widget build(BuildContext context) {
     final iconColor = Theme.of(context).iconTheme.color;
-    return Box(
+    return PressableBox(
       style: _style,
+      onPress: onPress,
       child: Column(
         spacing: 20,
         crossAxisAlignment: .start,
