@@ -1,5 +1,5 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:remix/remix.dart';
+import 'package:mix/mix.dart';
 
 class TestApp extends StatelessWidget {
   @override

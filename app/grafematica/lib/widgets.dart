@@ -14,13 +14,11 @@ class AppNavigationBarWidget extends StatelessWidget {
       child: LayoutBuilder(
         builder: (_, constraints) =>
             row
-                .maxWidth(250 + constraints.maxWidth / 12)
-                .mainAxisAlignment(.spaceBetween)
-                .border(
-                  .width(
-                    2,
-                  ).color(Theme.of(context).dividerColor.withAlpha(100)),
-                ).margin(.bottom(15))(
+                .merge(outlinedFlexBoxBaseStyle)
+                //.maxWidth(250 + constraints.maxWidth / 12)
+                .mainAxisAlignment(.center)
+                .mainAxisSize(.min)
+                .margin(.bottom(15))(
               children: [
                 NavigationDestinationWidget(
                   icon: fluent_ui.FluentIcons.home,
@@ -83,7 +81,7 @@ class NavigationDestinationWidget extends SignalWidget {
 }
 
 class HomeNavigationOptionWidget extends SignalWidget {
-  HomeNavigationOptionWidget({
+  const HomeNavigationOptionWidget({
     super.key,
     this.title = "Title",
     this.icon,
