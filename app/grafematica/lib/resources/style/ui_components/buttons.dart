@@ -24,7 +24,7 @@ Widget outlinedButton({
   required VoidCallback? onPress,
 }) => PressableBox(
   style: buttonBaseStyle.onBuilder((context) {
-    Color dividerColor = Theme.of(context).dividerColor;
+    final dividerColor = Theme.of(context).dividerColor;
     return BoxStyler()
         .merge(outlinedBoxBaseStyle)
         .onHovered(.border(.color(dividerColor.withAlpha(70))));
@@ -37,8 +37,8 @@ Widget outlinedButton({
 Widget iconButton(Icon icon, {VoidCallback? onPress}) {
   return PressableBox(
     style: buttonBaseStyle.onBuilder((context) {
-      Color hoverColor = Theme.of(context).hoverColor;
-      Color bgColor = Theme.of(context).scaffoldBackgroundColor;
+      final hoverColor = Theme.of(context).hoverColor;
+      final bgColor = Theme.of(context).scaffoldBackgroundColor;
       return .color(bgColor).onHovered(.color(hoverColor));
     }),
     onPress: onPress,
