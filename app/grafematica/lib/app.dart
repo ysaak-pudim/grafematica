@@ -1,15 +1,17 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:fluent_ui/fluent_ui.dart' as fluent_ui;
-import 'package:mix/mix.dart';
+import 'package:remix/remix.dart';
 import 'package:mix_winds/mix_winds.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:typst_flutter/typst_flutter.dart';
 
 import './features/themes/themes.dart';
 
-part '_app_state.dart';
-part '_widgets.dart';
+part 'app_state.dart';
 part 'homepage.dart';
+part 'ui_components.dart';
+part 'widgets.dart';
+
 
 /// Active compiler for the whole app
 late TypstCompiler typstCompiler;
@@ -26,6 +28,7 @@ class GrafematicaApp extends SignalWidget {
       darkTheme: AppThemes.defaultDark, // TODO: theme management
       home: Scaffold(
         body: Stack(
+          alignment: .bottomCenter,
           children: [
             // TODO: implement navigator and navigation box
             [

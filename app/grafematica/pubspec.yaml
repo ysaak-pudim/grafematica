@@ -35,7 +35,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   
-  mix: ^2.4.0
   signals_flutter: ^7.1.0
   material_ui: ^1.11.0
   drop_shadow: ^0.1.0
@@ -52,6 +51,7 @@ dependencies:
     git:
       url: https://github.com/btwld/mix.git
       path: packages/mix_winds
+  remix: ^0.2.0
 
 dev_dependencies:
   flutter_test:
