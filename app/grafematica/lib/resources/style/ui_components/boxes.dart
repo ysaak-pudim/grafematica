@@ -1,21 +1,11 @@
 part of 'ui_components.dart';
 
-// === BOXES ===
-// [box]
+// boxes
 BoxStyler get box => boxBaseStyle;
+BoxStyler get outlinedBox => outlinedBoxBaseStyle;
 
-// [outlined]
-Widget outlinedBox({Widget? child}) => Box(
-  style: boxBaseStyle.onBuilder((context) {
-    // divider color
-    Color dividerColor = Theme.of(context).dividerColor;
-
-    // now using divider color
-    return .border(.color(dividerColor.withAlpha(100)));
-  }),
-  child: child,
-);
-
-// [row & column]
+// row & column
 FlexBoxStyler get row => flexBoxBaseStyle.direction(.horizontal);
 FlexBoxStyler get column => flexBoxBaseStyle.direction(.vertical);
+FlexBoxStyler get outlinedRow => row.merge(outlinedFlexBoxBaseStyle);
+FlexBoxStyler get outlinedColumn => column.merge(flexBoxBaseStyle);
