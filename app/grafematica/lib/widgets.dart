@@ -13,8 +13,7 @@ class AppNavigationBarWidget extends StatelessWidget {
     return SafeArea(
       child: LayoutBuilder(
         builder: (_, constraints) =>
-            row
-                .merge(outlinedFlexBoxBaseStyle)
+            outlinedRow
                 //.maxWidth(250 + constraints.maxWidth / 12)
                 .mainAxisAlignment(.center)
                 .mainAxisSize(.min)
