@@ -12,11 +12,15 @@ class AppNavigationBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: LayoutBuilder(
-        builder: (_, constraints) => column.mainAxisSize(.min)(
-          children: [
+        builder: (_, constraints) =>
             row
+                .maxWidth(250 + constraints.maxWidth / 12)
                 .mainAxisAlignment(.spaceBetween)
-                .maxWidth(250 + constraints.maxWidth / 12)(
+                .border(
+                  .width(
+                    2,
+                  ).color(Theme.of(context).dividerColor.withAlpha(100)),
+                ).margin(.bottom(15))(
               children: [
                 NavigationDestinationWidget(
                   icon: fluent_ui.FluentIcons.home,
@@ -46,8 +50,6 @@ class AppNavigationBarWidget extends StatelessWidget {
                 ),
               ],
             ),
-          ],
-        ),
       ),
     );
   }
@@ -68,14 +70,15 @@ class NavigationDestinationWidget extends SignalWidget {
     final iconColor = Theme.of(context).iconTheme.color;
     final dividerColor = Theme.of(context).dividerColor;
 
-    return button('flex p-1', [
+    return iconButton(
       Icon(
         icon ?? Icons.question_mark,
         color: index == navigationDestinationIndex.value
             ? iconColor
             : dividerColor,
       ),
-    ], onPressed: () => changeNavigationIndexTo(index));
+      onPress: () => changeNavigationIndexTo(index),
+    );
   }
 }
 
