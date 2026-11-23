@@ -1,12 +1,77 @@
 part of 'app.dart';
 
+class HomeRichHeaderBar extends StatelessWidget {
+  const HomeRichHeaderBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return row.mainAxisAlignment(.spaceBetween)(
+      children: [
+        outlinedRow(
+          children: [
+            CircleAvatar(),
+            column.spacing(0).crossAxisAlignment(.start)(
+              children: [h4('User Name'), greyText('@username')],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class HomeNavigationOptionWidget extends SignalWidget {
+  const HomeNavigationOptionWidget({
+    super.key,
+    this.title = "Title",
+    this.icon,
+    this.description,
+    this.onPress,
+  });
+
+  final String title;
+  final IconData? icon;
+  final String? description;
+  final VoidCallback? onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    final iconColor = Theme.of(context).iconTheme.color;
+    return outlinedButton(
+      onPress: onPress,
+      child: column.crossAxisAlignment(.start)(
+        children: [
+          Row(
+            mainAxisAlignment: .spaceBetween,
+            children: [
+              h3(title),
+              Icon(
+                icon ?? fluent_ui.FluentIcons.app_icon_default,
+                color: iconColor,
+                size: 30,
+              ),
+            ],
+          ),
+          Text(description ?? loremIpsum),
+        ],
+      ),
+    );
+  }
+}
+
 class AppNavigationBarWidget extends StatelessWidget {
   AppNavigationBarWidget({super.key});
 
-  final _divider = LayoutBuilder(
-    builder: (context, _) =>
-        Container(width: 1, height: 20, color: Theme.of(context).dividerColor),
-  );
+  final _divider = BoxStyler()
+      .width(1.5)
+      .height(30)
+      .onBuilder(
+        (context) => .color(
+          Theme.of(context).dividerColor
+              .lerpWith(Theme.of(context).scaffoldBackgroundColor, 0.8),
+        ),
+      )();
 
   @override
   Widget build(BuildContext context) {
@@ -72,47 +137,9 @@ class NavigationDestinationWidget extends SignalWidget {
         icon ?? Icons.question_mark,
         color: index == navigationDestinationIndex.value
             ? iconColor
-            : dividerColor,
+            : iconColor?.withAlpha(140),
       ),
       onPress: () => changeNavigationIndexTo(index),
-    );
-  }
-}
-
-class HomeNavigationOptionWidget extends SignalWidget {
-  const HomeNavigationOptionWidget({
-    super.key,
-    this.title = "Title",
-    this.icon,
-    this.description,
-    this.onPress,
-  });
-
-  final String title;
-  final IconData? icon;
-  final String? description;
-  final VoidCallback? onPress;
-
-  @override
-  Widget build(BuildContext context) {
-    final iconColor = Theme.of(context).iconTheme.color;
-    return outlinedButton(
-      onPress: onPress,
-      child: column(
-        children: [
-          row.mainAxisAlignment(.spaceBetween)(
-            children: [
-              Text(title, textScaler: .linear(1.4)),
-              Icon(
-                icon ?? fluent_ui.FluentIcons.app_icon_default,
-                color: iconColor,
-                size: 30,
-              ),
-            ],
-          ),
-          Text(description ?? loremIpsum),
-        ],
-      ),
     );
   }
 }

@@ -1,7 +1,10 @@
+
+import 'package:grafematica/features/learn_page/learn_page.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:fluent_ui/fluent_ui.dart' as fluent_ui;
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:typst_flutter/typst_flutter.dart';
+import 'package:mix/mix.dart';
 
 import 'resources/style/style.dart';
 
@@ -29,9 +32,10 @@ class GrafematicaApp extends SignalWidget {
             // TODO: implement navigator and navigation box
             [
               Homepage(),
+              LearnPage(),
               ...List.generate(
                 4,
-                (i) => Center(child: Text('destination ${i + 1}')),
+                (i) => Container(),
               ),
             ][navigationDestinationIndex.value],
             AppNavigationBarWidget(),

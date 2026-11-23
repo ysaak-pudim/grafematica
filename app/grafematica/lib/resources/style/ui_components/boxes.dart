@@ -8,4 +8,4 @@ BoxStyler get outlinedBox => outlinedBoxBaseStyle;
 FlexBoxStyler get row => flexBoxBaseStyle.direction(.horizontal);
 FlexBoxStyler get column => flexBoxBaseStyle.direction(.vertical);
 FlexBoxStyler get outlinedRow => row.merge(outlinedFlexBoxBaseStyle);
-FlexBoxStyler get outlinedColumn => column.merge(flexBoxBaseStyle);
+FlexBoxStyler get outlinedColumn => column.merge(outlinedFlexBoxBaseStyle);
