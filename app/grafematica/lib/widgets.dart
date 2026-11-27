@@ -69,7 +69,7 @@ class AppNavigationBarWidget extends StatelessWidget {
       .onBuilder(
         (context) => .color(
           Theme.of(context).dividerColor
-              .lerpWith(Theme.of(context).scaffoldBackgroundColor, 0.8),
+              .lerpWith(Theme.of(context).scaffoldBackgroundColor, 0.3),
         ),
       )();
 

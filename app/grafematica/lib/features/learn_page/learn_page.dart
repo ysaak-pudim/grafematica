@@ -14,6 +14,11 @@ class LearnPage extends StatelessWidget {
             subject: .new(
               name: "Fermat's Little Theorem",
               level: .intermediate,
+              dependencies: [
+                .new(level: .intermediate),
+                .new(level: .intermediate),
+                .new(level: .beginner)
+              ]
             ),
           ),
         ],
