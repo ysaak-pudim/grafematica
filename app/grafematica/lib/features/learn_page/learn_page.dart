@@ -17,7 +17,8 @@ class LearnPage extends StatelessWidget {
               dependencies: [
                 .new(level: .intermediate),
                 .new(level: .intermediate),
-                .new(level: .beginner)
+                .new(level: .beginner),
+                .new(level: .unrated)
               ]
             ),
           ),
