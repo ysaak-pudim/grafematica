@@ -187,7 +187,7 @@ class Subject {
     return id;
   }
 
-  static Subject get getFromID(String id) {
+  static Subject getFromID(String id) {
     // TODO
     return Subject();
   }
